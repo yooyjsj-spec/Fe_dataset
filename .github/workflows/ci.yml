@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run pipeline smoke test
+        run: python tests/run_smoke_test.py
+      - name: Write job summary
+        if: always()
+        run: |
+          {
+            echo "## ctf_lpbf smoke test"
+            echo
+            if [ -f tests/out/condition_summary.csv ]; then
+              echo "### condition_summary.csv"
+              echo
+              echo '```'
+              cat tests/out/condition_summary.csv
+              echo '```'
+            else
+              echo "요약 CSV가 생성되지 않았습니다."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline-results
+          path: tests/out
+          if-no-files-found: warn

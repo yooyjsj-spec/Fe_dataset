@@ -10,6 +10,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib
+
+# CLI/CI/브라우저(Pyodide) 모두 화면 없이 PNG를 만들 수 있도록 Agg를 기본으로 둔다.
+try:
+    matplotlib.use("Agg")
+except Exception:
+    pass
+
 import matplotlib.pyplot as plt
 
 # 한글(조건명/라벨 등)이 그래프에 깨지지 않고 표시되도록 CJK 폰트를 지정한다.

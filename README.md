@@ -32,6 +32,31 @@ tests/
   run_smoke_test.py          end-to-end 검증 스크립트 (통과 확인됨)
 ```
 
+## 웹에서 테스트 (Cursor / GitHub)
+
+로컬에 Python이 없어도 브라우저에서 합성 CTF를 만들어 파이프라인을 검증할 수 있습니다.
+
+### Cursor
+
+1. 터미널에서 저장소 루트로 이동한 뒤 정적 서버를 켭니다.
+
+```bash
+npx --yes serve -l 8000 .
+```
+
+2. Cursor **Simple Browser** 또는 일반 브라우저에서 [http://localhost:8000](http://localhost:8000) 을 엽니다.
+3. **스모크 테스트** 탭 → 실행. 67°가 90°보다 Red 면적분율이 높은지, IPF-Z/범례 PNG가 생기는지 웹에서 바로 확인합니다.
+
+Command Palette에서 `Tasks: Run Task` → **웹 테스트 페이지 열기** 로도 같은 서버를 띄울 수 있습니다.
+
+### GitHub
+
+- **Actions**: `main`에 푸시하면 [CI](.github/workflows/ci.yml)가 `tests/run_smoke_test.py`를 실행합니다. 결과 PNG/CSV는 아티팩트로 내려받을 수 있습니다.
+- **Pages**: 같은 웹 UI가 GitHub Pages로 배포됩니다. (저장소 Settings → Pages → Source를 **GitHub Actions**로 두면 활성화됩니다.)
+- **Codespaces**: 이 저장소에서 Codespace를 만들면 8000 포트 미리보기로 같은 페이지가 열립니다.
+
+실제 장비 CTF는 웹 UI의 **CTF 업로드** 탭에 `.ctf` 파일을 넣으면 됩니다.
+
 ## 사용법
 
 ### 1) 실제 CTF 파일 준비
@@ -52,7 +77,7 @@ data/
 
 ```bash
 cd ctf_lpbf
-pip install numpy pandas matplotlib scipy   # 이미 설치되어 있다면 생략
+pip install -r requirements.txt   # numpy pandas matplotlib
 python -m ctf_lpbf.pipeline --data-dir ./data --out-dir ./results
 ```
 

@@ -79,7 +79,7 @@ def run(
                 png_path = cond_out / f"{f.stem}_IPF-Z.png"
                 render_ipf_map(
                     df, ctf.x_step or 1.0, ctf.y_step or 1.0, png_path,
-                    title=f"{condition} / {f.name}  (IPF-Z, 보라=아티팩트)",
+                    title=f"{condition} / {f.name}  (IPF-Z, magenta=artifact)",
                 )
                 print(f"  -> {png_path}")
 

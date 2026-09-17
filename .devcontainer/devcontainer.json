@@ -1,0 +1,20 @@
+{
+  "name": "Fe_dataset",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "pip install -r requirements.txt",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "Web demo",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postStartCommand": "python -m http.server 8000",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    }
+  }
+}
