@@ -52,7 +52,7 @@ Command Palette에서 `Tasks: Run Task` → **웹 테스트 페이지 열기** �
 ### GitHub
 
 - **Actions**: `main`에 푸시하면 [CI](.github/workflows/ci.yml)가 `tests/run_smoke_test.py`를 실행합니다. 결과 PNG/CSV는 아티팩트로 내려받을 수 있습니다.
-- **Pages**: 저장소가 public이면 같은 웹 UI가 GitHub Pages로 배포됩니다. 지금 저장소는 private이라 GitHub Free 플랜에서는 Pages가 비활성화됩니다. public으로 바꾸면 `https://yooyjsj-spec.github.io/Fe_dataset/` 에서 열 수 있습니다.
+- **Pages**: 웹 UI는 [https://yooyjsj-spec.github.io/Fe_dataset/](https://yooyjsj-spec.github.io/Fe_dataset/) 에서 바로 열 수 있습니다.
 - **Codespaces**: 이 저장소에서 Codespace를 만들면 8000 포트 미리보기로 같은 페이지가 열립니다.
 
 실제 장비 CTF는 웹 UI의 **CTF 업로드** 탭에 `.ctf` 파일을 넣으면 됩니다.
